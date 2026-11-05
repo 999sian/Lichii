@@ -1,0 +1,111 @@
+{
+  "purpose": "OBS game-window-only title-screen recordings for PR161; NOT gameplay performance or 60FPS evidence",
+  "pr": "https://github.com/zortos293/Lichii/pull/161",
+  "baseline_commit": "27226d2568c99c70cf78aa37adaf98b60457b2e5",
+  "after_commit": "64bb6fe0d7b4eddf62f3012de068bae1de130b59",
+  "binary_sha256": {
+    "baseline_eden_cli": "47a6be55389c21a39d593c9cdafed8cac45a32c00875b88f553ceaffe85cde0f",
+    "after_eden_cli": "ffa2aeb8f986eb68f394620b6677d2894d0d036420ca0528baa2ae9121add555"
+  },
+  "clips": [
+    {
+      "file": "baseline-title-27226d2568.mp4",
+      "sha256": "8c590d155fc3a769a202df3bf6304c6c9544ff19d8b71828e21e08dc8b609ab5",
+      "bytes": 4705003,
+      "duration_seconds": 24.85,
+      "sampled_actual_title_fps": [
+        48,
+        48,
+        48,
+        45,
+        46,
+        45
+      ]
+    },
+    {
+      "file": "after-title-64bb6fe0d7.mp4",
+      "sha256": "a6c63bed4f863026f974f04bc9b2797d34b1d437fe1dc377b1a13e23fbe9fbc0",
+      "bytes": 4756908,
+      "duration_seconds": 24.833333,
+      "sampled_actual_title_fps": [
+        46,
+        44,
+        43,
+        43,
+        42,
+        40
+      ]
+    }
+  ],
+  "fps_sample_warning": "Samples at4second spacing are displayed title counters, not distribution/median/gameplay benchmark.60fps video container is OBS capture cadence, not emulationFPS. After samples are not faster.",
+  "host": {
+    "cpu": "Intel Core i7-9700,8c8t",
+    "gpu": "NVIDIA GeForce RTX4060",
+    "driver": "610.88",
+    "ram_gib": 31.82,
+    "os": "Windows build26300.9818"
+  },
+  "build": {
+    "compiler": "MSYS2 UCRT Clang23.1.4",
+    "qt": "6.12.0",
+    "type": "Release-O3 native march/mtune=native",
+    "pgo": false,
+    "lto": false,
+    "source_host_compatibility_patch": false,
+    "options": "Qt/CLI/OpenGL/ReShade/LSFG/webserviceON; translations/tests/BUILD_TESTING/Discord/updatecheckerOFF; bundledQt/SDL/FFmpeg/OpenSSLOFF"
+  },
+  "runtime_settings_post_startup_serialized": {
+    "Core": {
+      "use_speed_limit": "true",
+      "speed_limit": "100",
+      "use_multi_core": "true"
+    },
+    "Cpu": {
+      "cpu_accuracy": "2"
+    },
+    "Renderer": {
+      "backend": "1",
+      "resolution_setup": "3",
+      "use_vsync": "1",
+      "gpu_accuracy": "0",
+      "nvdec_emulation": "2",
+      "frame_gen": "false",
+      "game_dlss_network": "false",
+      "nvidia_dlss": "false",
+      "async_presentation": "true",
+      "use_asynchronous_shaders": "true",
+      "use_reactive_flushing": "false",
+      "skip_cpu_inner_invalidation": "true"
+    },
+    "System": {
+      "fast_cpu_time": "0",
+      "fast_gpu_time": "0",
+      "use_docked_mode": "1"
+    }
+  },
+  "effective_settings_evidence": "INI is rewritten by frontend after game startup; both generated values match. Baseline has no title overrides; after OoT early overrides select same explicit values. No injected instrumentation/live memory reads.",
+  "scene": "Same title menu, noinput after fresh launches, identical privately copied NAND/account state. Title animation camera phase is NOT frame-aligned. Not stationary Kokiri/gameplay.",
+  "cache_policy": "Both start with empty isolated application pipeline caches and warm naturally through boot/title. NVIDIA driver and OS caches uncontrolled.",
+  "obs": {
+    "version": "33.0.1",
+    "isolation": "separate portable copy/profile/scenes",
+    "source": "Windows game window including authentic titleFPS; provenance text only",
+    "special_audio_slots": "all null; no desktop/mic capture",
+    "capture_resolution": [
+      1280,
+      720
+    ],
+    "capture_fps": 60,
+    "encoder": "NVENC H264 p5, Small quality, MKV",
+    "both_render_skipped_frames": 0,
+    "both_output_skipped_frames": 0,
+    "audio_in_final_files": false,
+    "transcode": "both libx264 veryfast CRF24, video-only, faststart after game exited"
+  },
+  "limitations": [
+    "No existing gameplay save initially. Baseline NewGame intro navigation later reached black/FPS0 with repeated texture-format and index<=tic_limit critical diagnostics while entering3D; stopped once, no rerun to confirm/no patch. Thus no stationary Kokiri comparison.",
+    "Title-only samples do not substantiate previous dirty-tree60FPS claim or general speedup.",
+    "AMD system-freeze/device-loss report remains unresolved release blocker; these NVIDIA recordings do not diagnose or fix it."
+  ],
+  "privacy": "No ROM, shaders, saves, keys, raw user configuration, raw runtime logs, desktop, microphone or chat uploaded."
+}

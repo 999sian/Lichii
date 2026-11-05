@@ -1231,7 +1231,8 @@ void Maxwell3D::FrontDmaRead(VideoCommon::GpuSplit& split, FrontState& fs, u32 m
             },
             VideoCommon::DrainSite::MacroDmaFlush);
     } else {
-        split.WaitForSyncedWriters(VideoCommon::DrainSite::MacroDmaRead);
+        // Writers after the last host sync can still produce this payload and its page marks.
+        split.WaitForWriters(VideoCommon::DrainSite::MacroDmaRead);
         split.WaitForSemaphore(source, VideoCommon::DrainSite::MacroDmaRead);
     }
     bool gpu_written = false;
